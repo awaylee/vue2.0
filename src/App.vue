@@ -2,7 +2,7 @@
   <div>
     <!--<img src="./assets/logo.png">
     <router-view></router-view>-->
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
     <!--tab-->
     <div class="tab border-1px">
       <div class="tab-item">
@@ -30,9 +30,7 @@
   export default {
     data () {
       return {
-          seller: {
-
-          }
+          seller: {}
       }
     },
     created () {
