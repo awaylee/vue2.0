@@ -23,8 +23,33 @@
 
 <script>
   import header from './components/header/header.vue';
+  import axios from 'axios';
+
+  const ERR_OK = 0;
 
   export default {
+    data () {
+      return {
+          seller: {
+
+          }
+      }
+    },
+    created () {
+      axios.get('/api/seller')
+          .then((response) => {
+            response = response.data;
+            if (response.errno == ERR_OK) {
+                this.seller = response.data; //this的指向问题，可以用箭头函数解决
+              console.log(this.seller);
+            }
+
+            console.log(response);
+      })
+          .catch(function (error) {
+            console.log(error);
+          });
+    },
     components: {
       "v-header": header
     }
@@ -33,6 +58,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "./common/stylus/mixin.styl"
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

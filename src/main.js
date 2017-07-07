@@ -3,11 +3,12 @@
 import Vue from 'vue';
 import App from './App';
 import Router from 'vue-router';
+import Axios from 'vue-axios';
 //import router from './router';
 import goods from '@/components/goods/goods';
 import ratings from '@/components/ratings/ratings';
 import seller from '@/components/seller/seller';
-import '@/common/stylus/index.styl';
+import '@/common/stylus/index';
 
 Vue.config.productionTip = false;
 
@@ -46,11 +47,11 @@ var app = new Vue({
     router,
     template: '<App/>',
     components: { App }
-});
+}).$mount("#app");
 
 router.push('/goods');
 
-app.$mount("#app");
+//app.$mount("#app");
 
 
 
