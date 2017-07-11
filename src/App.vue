@@ -35,18 +35,16 @@
     },
     created () {
       axios.get('/api/seller')
-          .then((response) => {
-            response = response.data;
-            if (response.errno == ERR_OK) {
-                this.seller = response.data; //this的指向问题，可以用箭头函数解决
-              console.log(this.seller);
-            }
-
-            console.log(response);
-      })
-          .catch(function (error) {
-            console.log(error);
-          });
+        .then((response) => {
+          response = response.data;
+          if (response.errno == ERR_OK) {
+              this.seller = response.data; //this的指向问题，可以用箭头函数解决
+            console.log('seller:',this.seller);
+          }
+        })
+        .catch(function (error) {
+          console.log('error:',error);
+        });
     },
     components: {
       "v-header": header
