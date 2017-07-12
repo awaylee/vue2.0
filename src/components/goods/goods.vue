@@ -1,6 +1,6 @@
 <template>
-  <div class="goods">
-    <div class="menu-wrapper">
+  <div class="goods" >
+    <div class="menu-wrapper" ref="menuWrapper">
       <ul>
         <li v-for="item in goods" class="menu-item">
           <span class="text border-1px">
@@ -9,7 +9,7 @@
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper">
+    <div class="foods-wrapper" ref="foodsWrapper">
       <ul>
         <li v-for="item in goods" class="food-list">
           <h1 class="title">{{item.name}}</h1>
@@ -26,8 +26,7 @@
                   <span>好评率{{food.rating}}%</span>
                 </div>
                 <div class="price">
-                  <span class="now">￥{{food.price}}</span>
-                  <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+                  <span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
               </div>
             </li>
@@ -40,6 +39,7 @@
 
 <script type="text/ecmascript-6">
   import axios from 'axios';
+  import BScroll from 'better-scroll';
 
   const ERR_OK = 0;
 
@@ -62,13 +62,22 @@
         response = response.data;
         if (response.errno == ERR_OK) {
           this.goods = response.data;
-          console.log('goods:',this.goods)
+          console.log('goods:',this.goods);
+          this.$nextTick(() => {
+            this._initScroll();
+          })
         }
       })
       .catch((err) => {
         console.log('error:',err);
       })
 
+    },
+    methods: {
+      _initScroll() {
+        this.menuScroll = new BScroll(this.$refs.menuWrapper, {});
+        this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {});
+      }
     }
   }
 </script>
@@ -152,8 +161,9 @@
           .desc
             margin-bottom 8px
           .extra
-            &.count
+            .count
               margin-right 12px
+              line-height 12px
           .price
             font-weight 700
             line-height 24px
