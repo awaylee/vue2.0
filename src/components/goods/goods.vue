@@ -34,12 +34,14 @@
         </li>
       </ul>
     </div>
+    <shopCart></shopCart>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import axios from 'axios';
   import BScroll from 'better-scroll';
+  import shopCart from '../shopcart/shopcart.vue'
 
   const ERR_OK = 0;
 
@@ -120,6 +122,9 @@
           this.listHeight.push(height);
         }
       }
+    },
+    components:{
+      'shopCart': shopCart
     }
   }
 </script>
