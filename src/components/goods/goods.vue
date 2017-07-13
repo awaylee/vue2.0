@@ -34,7 +34,7 @@
         </li>
       </ul>
     </div>
-    <shopCart></shopCart>
+    <shopCart :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopCart>
   </div>
 </template>
 
