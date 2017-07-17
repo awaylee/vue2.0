@@ -49,11 +49,23 @@
     font-size 0
     .cart-decrease
       display inline-block
+      padding 6px
+      transition all .4s linear
+      &.move-transition
+        opacity 1
+        transform translate3D(0,0,0)
       .inner
-        padding 6px
+        display inline-block
         font-size 24px
         line-height 24px
         color rgb(0,160,220)
+        transition all .4s linear
+        transform rotate(0)
+      &.move-enter,&.move-leave-to
+        opacity 0
+        transform translate3D(24px,0,0)
+        .inner
+          transform rotate(180deg)
     .cart-count
       display inline-block
       font-size 10px
