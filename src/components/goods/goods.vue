@@ -108,7 +108,8 @@
           click: true
         });
         this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {
-          probeType: 3
+          probeType: 3,
+          click: true
         });
 
         this.foodsScroll.on('scroll', (pos) => {
@@ -235,9 +236,9 @@
               text-decoration line-through
               font-size 10px
               color rgb(147,153,159)
-            .cartcontrol-wrapper
-              position absolute
-              right 0
-              bottom 12px
+          .cartcontrol-wrapper
+            position absolute
+            right 0
+            bottom 12px
 
 </style>
