@@ -6,7 +6,9 @@
           <div class="logo" :class="{'hightlight':totalCount>0}">
             <i class="icon-shopping_cart" :class="{'hightlight':totalCount>0}"></i>
           </div>
-          <div class="num" v-show="totalCount>0">{{totalCount}}</div>
+          <transition name="move">
+            <div class="num" v-show="totalCount>0">{{totalCount}}</div>
+          </transition>
         </div>
         <div class="price" :class="{'hightlight':totalPrice>0}">￥{{totalPrice}}元</div>
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
@@ -15,6 +17,14 @@
         <div class="pay" :class="payClass">{{payDesc}}</div>
       </div>
     </div>
+    <transition name="drop">
+      <div class="ball-container">
+        <div v-for="ball in balls" v-show="ball.show" class="ball">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </transition>
+
   </div>
 </template>
 
@@ -37,6 +47,27 @@
       minPrice:{
         type:Number,
         default:0
+      }
+    },
+    data(){
+      return {
+        balls:[
+          {
+            show:false
+          },
+          {
+            show:false
+          },
+          {
+            show:false
+          },
+          {
+            show:false
+          },
+          {
+            show:false
+          }
+        ]
       }
     },
     computed:{
@@ -70,6 +101,13 @@
         } else {
           return 'enough';
         }
+      }
+    },
+    methods:{
+      drop(el) {
+        console.log(el);
+        console.log(1)
+
       }
     }
   }
@@ -129,6 +167,16 @@
             color #fff
             background rgb(240,20,20)
             box-shadow 0 4px 8px 0 rgba(0,0,0,.4)
+           /* transition all .4s ease
+            &.move-transition
+              opacity 1
+              transform translate3D(0,0,0)
+            &.move-enter
+              opacity 0
+              transform translate3D(40px,-100px,0)
+            &.move-leave-to
+              opacity 0
+              transform translate3D(40px,0,0)*/
         .price
           display inline-block
           vertical-align top
@@ -164,4 +212,18 @@
           &.enough
             background #00b43c
             color: #fff
+    .ball-container
+      .ball
+        position fixed
+        left 32px
+        bottom 22px
+        z-index 200
+        &.drop-transition
+          transition all .4s
+          .inner
+            width 16px
+            height 16px
+            border-radius 50%
+            background rgb(0,160,220)
+            transition all .4s
 </style>

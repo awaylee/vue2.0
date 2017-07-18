@@ -37,7 +37,7 @@
         </li>
       </ul>
     </div>
-    <shopCart :selectFoods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopCart>
+    <shopCart v-on:cartAdd="_drop(target)" ref="shopcart" :selectFoods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopCart>
   </div>
 </template>
 
@@ -48,7 +48,6 @@
   import cartcontrol from '../cartcontrol/cartcontrol.vue';
 
   const ERR_OK = 0;
-
   export default {
     props: {
       seller:{
@@ -102,7 +101,8 @@
       })
       .catch((err) => {
         console.log('error:',err);
-      })
+      });
+      this.$on('cartAdd',this._drop);
 
     },
     methods: {
@@ -137,6 +137,9 @@
           height += item.clientHeight;
           this.listHeight.push(height);
         }
+      },
+      _drop(target){
+        this.$refs.shopcart.drop(target);
       }
     },
     components:{

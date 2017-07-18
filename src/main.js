@@ -45,6 +45,9 @@ var router = new Router({
 Vue.use(Router);
 var app = new Vue({
     router,
+    data:{
+      eventHub:new Vue()
+    },
     template: '<App/>',
     components: { App }
 }).$mount("#app");
