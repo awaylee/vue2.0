@@ -67,7 +67,8 @@
           {
             show:false
           }
-        ]
+        ],
+        dropBall:[]
       }
     },
     computed:{
@@ -105,10 +106,14 @@
     },
     methods:{
       drop(el) {
-        console.log(el);
-        console.log(1)
+        for(let i = 0; i < this.balls.length; i++) {
+          let ball = this.balls[i];
+        }
 
       }
+    },
+    created() {
+      this.$root.eventHub.$on('cartAdd', this.drop)
     }
   }
 </script>
