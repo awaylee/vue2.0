@@ -400,7 +400,7 @@
     left 0
     width 100%
     height 100%
-    z-index 20
+    z-index 40
     background rgba(7,17,27,.6)
     filter blur(10px)
     transition all .5s
