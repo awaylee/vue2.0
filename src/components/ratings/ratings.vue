@@ -1,5 +1,4 @@
 <template>
-<div>
   <div class="ratings" ref="ratings">
     <div class="ratings-content">
       <div class="overview">
@@ -51,7 +50,6 @@
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -213,9 +211,6 @@
             font-size 12px
             color rgb(147,153,159)
             margin-left 12px
-
-
-
     .rating-wrapper
       padding 0 18px
       .rating-item
