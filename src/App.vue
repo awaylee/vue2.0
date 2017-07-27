@@ -24,21 +24,29 @@
 <script>
   import header from './components/header/header.vue';
   import axios from 'axios';
+  import {urlParse} from './common/js/util';
 
   const ERR_OK = 0;
 
   export default {
     data () {
       return {
-          seller: {}
+          seller: {
+            id: (() => {
+              let queryParam = urlParse();
+              //console.log(queryParam)
+              return queryParam.id;
+            })()
+          }
       }
     },
     created () {
-      axios.get('/api/seller')
+      axios.get('/api/seller?id='+this.seller.id)
         .then((response) => {
           response = response.data;
           if (response.errno == ERR_OK) {
-              this.seller = response.data; //this的指向问题，可以用箭头函数解决
+              //this.seller = response.data; //this的指向问题，可以用箭头函数解决
+              this.seller = Object.assign({},this.seller,response.data);
             console.log('seller:',this.seller);
           }
         })
