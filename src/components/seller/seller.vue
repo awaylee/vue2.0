@@ -74,6 +74,7 @@
   import star from '../star/star.vue';
   import axios from 'axios';
   import {formatDate} from '../../common/js/date';
+  import {saveToLocal,loadFromLocal} from '../../common/js/store';
   import BScroll from 'better-scroll';
 
   export default {
@@ -84,7 +85,9 @@
     },
     data() {
       return {
-        favorite:false
+        favorite:(() => {
+          return loadFromLocal(this.seller.id,'favorite',false)
+        })()
       }
     },
     created() {
@@ -146,6 +149,7 @@
           return
         }
         this.favorite = !this.favorite;
+        saveToLocal(this.seller.id,'favorite',this.favorite)
       }
     }
   }
